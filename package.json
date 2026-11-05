@@ -1,0 +1,14 @@
+{
+  "name": "week-7-revision",
+  "private": true,
+  "description": "Year 8 Week 7 Maths and Science revision with accounts, on Cloudflare Workers + D1",
+  "scripts": {
+    "build": "bash scripts/build-maths.sh",
+    "dev": "wrangler d1 migrations apply revision-db --local && wrangler dev",
+    "db:migrate": "wrangler d1 migrations apply revision-db --remote",
+    "deploy": "wrangler d1 migrations apply revision-db --remote && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.40.0"
+  }
+}

@@ -1,0 +1,19 @@
+# Cloudflare Worker that serves the revision site (public/) and its account API (src/worker.js).
+name = "revision-hub"
+main = "src/worker.js"
+compatibility_date = "2025-09-01"
+
+# Static pages. Anything that is not a file here falls through to the Worker (the /api/* routes).
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "404-page"
+
+# Accounts, sessions and saved progress live in this D1 database.
+# Create it once with:  npx wrangler d1 create revision-db
+# then paste the database_id it prints below.
+[[d1_databases]]
+binding = "DB"
+database_name = "revision-db"
+database_id = "REPLACE_WITH_YOUR_DATABASE_ID"
+migrations_dir = "migrations"
